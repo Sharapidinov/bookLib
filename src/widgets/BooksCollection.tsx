@@ -1,8 +1,9 @@
 import React from 'react';
 import {Stack} from "@mui/material";
 import BookCard from "../entites/BookCard";
+import {useFetchAllPostsQuery} from "../store/query/BookQuery";
 
-const data = {
+const data1 = {
     "kind": "books#volumes",
     "totalItems": 582,
     "items": [
@@ -369,9 +370,15 @@ const data = {
 }
 
 const BooksCollection = () => {
+    const {data} = useFetchAllPostsQuery({
+        q:"flowers"
+
+    })
+
+    console.log(data)
     return (
         <Stack direction={"row"} gap={"32px"} flexWrap="wrap">
-            {data.items.map(book => (
+            {data?.items?.map(book => (
                 <BookCard key={book.id} book={book}/>
             ))}
         </Stack>
