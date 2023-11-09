@@ -22,8 +22,6 @@ export const bookQuery = createApi({
             }),
             providesTags: () => ["postListData"],
         }),
-
-
     }),
 });
 
