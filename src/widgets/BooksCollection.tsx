@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import {Button, Stack} from "@mui/material";
 import BookCard from "../entites/BookCard";
 import {useFetchAllPostsQuery} from "../store/query/BookQuery";
+import {useSearchParams} from "react-router-dom";
 
 const PAGINATION_STEP = 30
 const BooksCollection = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const[maxResults, setMaxResults] = useState(PAGINATION_STEP)
     const {data} = useFetchAllPostsQuery({
-        q:"js",
+        q:searchParams.get("q"),
         maxResults
     })
     console.log(data)

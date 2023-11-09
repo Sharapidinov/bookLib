@@ -1,25 +1,39 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState, useRef } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams , useParams} from "react-router-dom";
+import { useClickOutside } from "../shared/lib/use-click-outside";
+import {css} from "@emotion/react";
+
+const styles={
+    button:css({
+        cursor:"pointer"
+    })
+}
 
 const SearchInput = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-
+    const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
+    const searchInputRef = useRef();
     const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchInput(e.target.value);
+    };
+
+    const changeSearchParams = () => {
+
         setSearchParams({
             ...searchParams,
-            q: e.target.value
+            ...(!!searchInput && { q: searchInput }),
         });
     };
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            // Вызывайте вашу функцию после нажатия Enter здесь
-            // Например, отправка запроса или навигация
-            console.log('Enter pressed. Do something...');
+        if (e.key === "Enter") {
+            changeSearchParams();
         }
     };
+
+    useClickOutside(searchInputRef, changeSearchParams);
 
     return (
         <div style={{ paddingTop: "30px" }}>
@@ -27,11 +41,16 @@ const SearchInput = () => {
                 onChange={handleSearchInput}
                 onKeyDown={handleKeyDown}
                 fullWidth
+                ref={searchInputRef}
+                value={searchInput}
                 label="Outlined"
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <Search />
+                            <Search
+                                css={styles.button}
+                                onClick={changeSearchParams}
+                            />
                         </InputAdornment>
                     ),
                 }}

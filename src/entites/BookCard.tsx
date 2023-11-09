@@ -7,9 +7,6 @@ const styles = {
         boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px;",
         background:"#f5f5f5",
         padding:"16px"
-        // display:"flex",
-        // flexDirection:"column",
-        // justifyContent:"space-between"
     }),
     image:css({
         objectFit:"contain",
