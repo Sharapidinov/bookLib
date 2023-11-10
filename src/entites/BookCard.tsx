@@ -5,6 +5,7 @@ import { Book } from "../shared/types/book";
 const styles = {
   root: css({
     width: "calc(25% - 24px)",
+    maxWidth: "300px",
     boxShadow: "rgba(0, 0, 0, 0.08) 0px 4px 12px;",
     background: "#f5f5f5",
     padding: "16px",

@@ -1,7 +1,9 @@
+import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function useSearchParams<T extends string>() {
-  const params = Object.fromEntries(new URLSearchParams(useLocation().search));
+  const location = useLocation();
+  const params = useMemo(() => Object.fromEntries(new URLSearchParams(location.search)), [location]);
 
   const navigate = useNavigate();
   const setSearchParams = (newParams: Partial<Record<T, string>>) => {

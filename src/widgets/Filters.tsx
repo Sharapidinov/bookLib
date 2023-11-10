@@ -23,6 +23,7 @@ const Filters = () => {
       .filter((el) => !!el)
       .join("+");
     setSearchParams({ ...searchParams, orderBy, q: formattedQuery });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, orderBy]);
 
   const handleQueryChange = (value: string, key: string) => {
