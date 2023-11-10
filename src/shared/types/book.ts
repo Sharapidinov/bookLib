@@ -8,3 +8,11 @@ export type Book = {
     authors: string;
   };
 };
+
+export type Error = {
+  data: {
+    error: {
+      message: string;
+    };
+  };
+}

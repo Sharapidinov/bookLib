@@ -1,4 +1,3 @@
-import React from 'react';
 
 import '../shared/styles/index.css';
 import { AppRouter } from './router/AppRouter';

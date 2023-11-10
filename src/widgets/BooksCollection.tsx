@@ -5,7 +5,7 @@ import { useFetchAllPostsQuery } from "@/store/query";
 import { useSearchParams } from "@/shared/lib";
 import { css } from "@emotion/react";
 import { PAGINATION_STEP } from "@/shared/constants";
-import { Book } from "@/shared/types";
+import {Book, Error} from "@/shared/types";
 
 const styles = {
   root: css({
@@ -38,7 +38,7 @@ const BooksCollection = () => {
     ...searchParams,
     startIndex,
   });
-  console.log(error?.data?.error?.message)
+
   useEffect(() => {
     if (startIndex !== 0) {
       refetch().then(({ data }) =>
@@ -59,7 +59,7 @@ const BooksCollection = () => {
 
   return (
     <div css={styles.root}>
-      {error ? <Alert severity="error">{error?.data?.error?.message}</Alert>
+      {error ? <Alert severity="error">{(error as Error)?.data?.error?.message}</Alert>
             :
             <>
               {isLoading ? <CircularProgress size={64} />
