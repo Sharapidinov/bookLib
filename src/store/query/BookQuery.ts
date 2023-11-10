@@ -1,30 +1,40 @@
-// https://www.googleapis.com/books/v1/volumes?q=flowers&key=AIzaSyDNZnmLNtB0fJawUN_j7f3qMJNu55OpKPQ&maxResults=5
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Book } from "../../shared/types/book";
 
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-interface iProps {
-    maxResults?:number,
-    filter?:string,
-    orderBy?:string,
-    q?:string,
+interface BookQueryProps {
+  maxResults?: number;
+  filter?: string;
+  orderBy?: string;
+  startIndex?: number;
 }
-export const bookQuery = createApi({
-    reducerPath: "bookQuery",
-    baseQuery: fetchBaseQuery({
-        baseUrl: `https://www.googleapis.com/books/v1/volumes/`,
-    }),
-    tagTypes: [],
-    endpoints: (build) => ({
 
-        fetchAllPosts: build.query<any, iProps>({
-            query: (params) => ({
-                url:"",
-                params: {...params ,key:import.meta.env.VITE_API_KEY},
-            }),
-            providesTags: () => ["postListData"],
-        }),
+type BookResponse = {
+  items: Book[];
+  totalItems: string;
+};
+
+const PAGINATION_STEP = 30;
+
+export const bookApi = createApi({
+  reducerPath: "bookApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://www.googleapis.com/books/v1/volumes/",
+  }),
+  endpoints: (builder) => ({
+    fetchAllPosts: builder.query<BookResponse, BookQueryProps>({
+      query: (args) => ({
+        url: "",
+        params: {
+          ...args,
+          key: import.meta.env.VITE_API_KEY,
+          maxResults: args.maxResults || PAGINATION_STEP,
+          startIndex: args.startIndex || 0,
+        },
+      }),
     }),
+  }),
 });
 
-export const {
-    useFetchAllPostsQuery
-} = bookQuery;
+export const { useFetchAllPostsQuery } = bookApi;
+
+export default bookApi;

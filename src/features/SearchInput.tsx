@@ -1,62 +1,47 @@
-import React, { ChangeEvent, KeyboardEvent, useState, useRef } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { InputAdornment, TextField } from "@mui/material";
 import { Search } from "@mui/icons-material";
-import { useSearchParams , useParams} from "react-router-dom";
-import { useClickOutside } from "../shared/lib/use-click-outside";
-import {css} from "@emotion/react";
+import { css } from "@emotion/react";
 
-const styles={
-    button:css({
-        cursor:"pointer"
-    })
-}
+const styles = {
+  button: css({
+    cursor: "pointer",
+  }),
+};
 
-const SearchInput = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [searchInput, setSearchInput] = useState(searchParams.get("q") || "");
-    const searchInputRef = useRef();
-    const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearchInput(e.target.value);
-    };
+type SearchInputProps = {
+  label: string;
+  initialValue: string;
+  onChange: (value: string) => void;
+};
 
-    const changeSearchParams = () => {
+const SearchInput = ({ onChange, initialValue, ...rest }: SearchInputProps) => {
+  const [inputValue, setInputValue] = useState(initialValue || "");
 
-        setSearchParams({
-            ...searchParams,
-            ...(!!searchInput && { q: searchInput }),
-        });
-    };
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onChange(inputValue);
+    }
+  };
 
-    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            changeSearchParams();
-        }
-    };
-
-    useClickOutside(searchInputRef, changeSearchParams);
-
-    return (
-        <div style={{ paddingTop: "30px" }}>
-            <TextField
-                onChange={handleSearchInput}
-                onKeyDown={handleKeyDown}
-                fullWidth
-                ref={searchInputRef}
-                value={searchInput}
-                label="Outlined"
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Search
-                                css={styles.button}
-                                onClick={changeSearchParams}
-                            />
-                        </InputAdornment>
-                    ),
-                }}
-            />
-        </div>
-    );
+  return (
+    <div style={{ paddingTop: "30px" }}>
+      <TextField
+        {...rest}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => setInputValue(event.target.value)}
+        onKeyDown={handleKeyDown}
+        fullWidth
+        value={inputValue}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Search css={styles.button} onClick={() => onChange(inputValue)} />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </div>
+  );
 };
 
 export default SearchInput;

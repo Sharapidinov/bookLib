@@ -1,16 +1,14 @@
-import React from 'react';
 import BooksCollection from "../widgets/BooksCollection";
-import {Container} from "@mui/material";
-import SearchBlock from "../widgets/SearchBlock";
+import { Container } from "@mui/material";
+import Filters from "../widgets/Filters";
 
 const Dashboard = () => {
-
-    return (
-        <Container>
-            <SearchBlock/>
-            <BooksCollection/>
-        </Container>
-    );
+  return (
+    <Container>
+      <Filters />
+      <BooksCollection />
+    </Container>
+  );
 };
 
 export default Dashboard;
