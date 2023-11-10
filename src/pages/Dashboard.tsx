@@ -2,7 +2,7 @@ import BooksCollection from "../widgets/BooksCollection";
 import { Container } from "@mui/material";
 import Filters from "../widgets/Filters";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <Container>
       <Filters />
@@ -10,5 +10,3 @@ const Dashboard = () => {
     </Container>
   );
 };
-
-export default Dashboard;

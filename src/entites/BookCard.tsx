@@ -1,6 +1,6 @@
 import { Typography, Card, CardMedia, CardContent } from "@mui/material";
 import { css } from "@emotion/react";
-import { Book } from "../shared/types/book";
+import { Book } from "@/shared/types";
 
 const styles = {
   root: css({
@@ -14,7 +14,8 @@ const styles = {
     objectFit: "contain",
     width: "fit-content",
     margin: "0 auto",
-    boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;",
+    boxShadow:
+      "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;",
   }),
   content: css({
     padding: "0",
@@ -28,12 +29,23 @@ type BookCardProps = {
   book: Book;
 };
 
-const BookCard = ({ book }: BookCardProps) => {
+export const BookCard = ({ book }: BookCardProps) => {
   return (
     <Card css={styles.root}>
-      <CardMedia component="img" alt="green iguana" height="140" css={styles.image} image={book?.volumeInfo.imageLinks?.thumbnail} />
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="140"
+        css={styles.image}
+        image={book?.volumeInfo.imageLinks?.thumbnail}
+      />
       <CardContent css={styles.content}>
-        <Typography css={styles.title} gutterBottom variant="h6" component="div">
+        <Typography
+          css={styles.title}
+          gutterBottom
+          variant="h6"
+          component="div"
+        >
           {book.volumeInfo.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
@@ -43,5 +55,3 @@ const BookCard = ({ book }: BookCardProps) => {
     </Card>
   );
 };
-
-export default BookCard;

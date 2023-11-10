@@ -7,7 +7,7 @@
     "skipLibCheck": true,
     "jsxImportSource": "@emotion/react",
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -19,8 +19,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "paths": {
+        "@/*": [
+            "./*"
+        ]
+    },
   },
   "include": ["src"],
+  
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }

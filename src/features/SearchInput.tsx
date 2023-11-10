@@ -15,7 +15,11 @@ type SearchInputProps = {
   onChange: (value: string) => void;
 };
 
-const SearchInput = ({ onChange, initialValue, ...rest }: SearchInputProps) => {
+export const SearchInput = ({
+  onChange,
+  initialValue,
+  ...rest
+}: SearchInputProps) => {
   const [inputValue, setInputValue] = useState(initialValue || "");
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -28,14 +32,19 @@ const SearchInput = ({ onChange, initialValue, ...rest }: SearchInputProps) => {
     <div style={{ paddingTop: "30px" }}>
       <TextField
         {...rest}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => setInputValue(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          setInputValue(event.target.value)
+        }
         onKeyDown={handleKeyDown}
         fullWidth
         value={inputValue}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Search css={styles.button} onClick={() => onChange(inputValue)} />
+              <Search
+                css={styles.button}
+                onClick={() => onChange(inputValue)}
+              />
             </InputAdornment>
           ),
         }}
@@ -43,5 +52,3 @@ const SearchInput = ({ onChange, initialValue, ...rest }: SearchInputProps) => {
     </div>
   );
 };
-
-export default SearchInput;

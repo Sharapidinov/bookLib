@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Autocomplete, TextField } from "@mui/material";
-import useSearchParams from "../shared/lib/use-search-params";
+import { useSearchParams } from "@/shared/lib";
 
 type FiltersProps = {
   name: string;
@@ -8,7 +8,7 @@ type FiltersProps = {
   label: string;
 };
 
-const Filters = ({ options, name, label }: FiltersProps) => {
+export const Filters = ({ options, name, label }: FiltersProps) => {
   const [value, setValue] = useState<string>(options[0]);
 
   const [searchParams, setSearchParams] = useSearchParams();

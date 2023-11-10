@@ -9,7 +9,7 @@ export const rootReducer = combineReducers({
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat([bookApi.middleware]),
+    getDefaultMiddleware().concat([bookApi.middleware]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
