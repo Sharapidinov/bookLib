@@ -3,6 +3,7 @@ import { SearchInput } from "@/features";
 import { BOOK_CATEGORIES, SORT_TYPES } from "@/shared/constants";
 import { useSearchParams } from "@/shared/lib";
 import { Autocomplete } from "@/shared/ui";
+import { css } from "@emotion/react";
 
 const categoryOptions = Object.values(BOOK_CATEGORIES);
 const filterOptions = Object.values(SORT_TYPES);
@@ -10,6 +11,25 @@ const filterOptions = Object.values(SORT_TYPES);
 type Query = {
   search: string;
   subject: string;
+};
+
+const styles = {
+  root: css({
+    background: 'white',
+    padding: '16px',
+    borderRadius: '10px',
+    display: "grid",
+    gridTemplateColumns: '1fr 0.4fr 0.4fr',
+    gap: '16px',
+    '@media (max-width: 767.98px)': {
+      display: "flex",
+      flexWrap: 'wrap',
+    },
+    '@media (max-width: 599px)': {
+      gridTemplateColumns: '1fr',
+      padding: '12px 16px',
+    },
+  }),
 };
 
 const Filters = () => {
@@ -34,7 +54,7 @@ const Filters = () => {
   };
 
   return (
-    <div>
+    <div css={styles.root}>
       <SearchInput
         label="Search"
         onChange={(value) => handleQueryChange(value, "search")}

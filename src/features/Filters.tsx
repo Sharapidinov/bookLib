@@ -24,7 +24,6 @@ export const Filters = ({ options, name, label }: FiltersProps) => {
       options={options}
       value={value}
       onChange={(_, option) => handleChange(option || "")}
-      css={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label={label} />}
     />
   );
