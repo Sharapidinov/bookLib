@@ -38,9 +38,16 @@ export const styles = {
     },
   }),
   author: css({
+    marginBottom:10,
     '@media (max-width: 599px)': {
       font: "400 11px Roboto",
     },
   }),
+  categories: css({
+
+    '@media (max-width: 599px)': {
+      font: "400 11px Roboto",
+    },
+  })
 };
   

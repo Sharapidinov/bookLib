@@ -6,6 +6,7 @@ export type Book = {
     };
     title: string;
     authors: string;
+    categories: [string]
   };
 };
 
