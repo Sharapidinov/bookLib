@@ -1,7 +1,7 @@
 import { Typography, Card, CardMedia, CardContent } from "@mui/material";
 import { Book } from "@/shared/types";
 import { styles } from "./styles";
-import BookImage from "@/assets/noneBookImage.png"
+import BookImage from "@/shared/assets/noneBookImage.png"
 type BookCardProps = {
   book: Book;
 };
