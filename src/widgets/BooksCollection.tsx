@@ -5,7 +5,15 @@ import { useFetchAllPostsQuery } from "@/store/query";
 import { useSearchParams } from "@/shared/lib";
 import { css } from "@emotion/react";
 import { PAGINATION_STEP } from "@/shared/constants";
-import {Book, Error} from "@/shared/types";
+import {Book} from "@/shared/types/index.ts";
+
+export type Error = {
+  data: {
+    error: {
+      message: string;
+    };
+  };
+}
 
 const styles = {
   root: css({
