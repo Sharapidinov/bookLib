@@ -1,11 +1,10 @@
+import "@/shared/styles/index.css";
+import { AppRouter } from "./router/AppRouter";
 
-import '../shared/styles/index.css';
-import { AppRouter } from './router/AppRouter';
+import { withProviders } from "./providers";
 
-import { withProviders } from './provaiders';
+const App = withProviders(() => {
+  return <AppRouter />;
+});
 
-const App = () => {
-    return <AppRouter />;
-};
-
-export default withProviders(App);
+export default App;

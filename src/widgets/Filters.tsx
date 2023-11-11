@@ -10,7 +10,7 @@ const filterOptions = Object.values(SORT_TYPES);
 
 type Query = {
   search: string;
-  subject: string;
+  subject: BOOK_CATEGORIES;
 };
 
 const styles = {

@@ -2,14 +2,13 @@ import { Typography, Card, CardMedia, CardContent } from "@mui/material";
 import { Book } from "@/shared/types";
 import { styles } from "./styles";
 import BookImage from "@/shared/assets/noneBookImage.png"
+
 type BookCardProps = {
   book: Book;
 };
 
 export const BookCard = ({ book }: BookCardProps) => {
-    const category = book.volumeInfo.categories?.[0]?.split("&")[0];
-
-
+    const category = book.volumeInfo.categories?.[0];
 
     return (
     <Card css={styles.root}>

@@ -10,3 +10,10 @@ export type Book = {
   };
 };
 
+export type Error = {
+  data: {
+    error: {
+      message: string;
+    };
+  };
+};
